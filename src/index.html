@@ -11,7 +11,27 @@
 </head>
 <body>
 
-  <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+  <my-component>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+  </my-component>
+
+  <script>
+    const mc = document.querySelector("my-component");
+
+    setInterval(() => {
+      if (mc.parentNode) {
+        mc.remove();
+      }
+      else {
+        document.body.append(mc);
+      }
+    }, 1000);
+
+  </script>
 
 </body>
 </html>

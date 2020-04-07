@@ -1,32 +1,23 @@
-import { Component, Prop, h } from '@stencil/core';
-import { format } from '../../utils/utils';
+import { Component, h, Element } from '@stencil/core';
 
 @Component({
   tag: 'my-component',
-  styleUrl: 'my-component.css',
   shadow: true
 })
 export class MyComponent {
-  /**
-   * The first name
-   */
-  @Prop() first: string;
+  @Element()
+  el: HTMLElement;
 
-  /**
-   * The middle name
-   */
-  @Prop() middle: string;
+  connectedCallback(): void {
+    const { length } = this.el.querySelectorAll("div");
 
-  /**
-   * The last name
-   */
-  @Prop() last: string;
+    // NEXT: will be 0
+    // LEGACY: will be 5
 
-  private getText(): string {
-    return format(this.first, this.middle, this.last);
+    console.log(length);
   }
 
   render() {
-    return <div>Hello, World! I'm {this.getText()}</div>;
+    return <div/>;
   }
 }
